@@ -10,6 +10,10 @@ RUN apt-get update && \
        gcc \
        libc6-dev \
        python \
+       git \
+       ssh \
+       tar \
+       gzip \
        -qqy \
        --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
