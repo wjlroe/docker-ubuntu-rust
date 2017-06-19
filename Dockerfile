@@ -24,4 +24,4 @@ RUN curl -fsOSL $RUST_DOWNLOAD_URL \
     && curl -s $RUST_DOWNLOAD_URL.sha256 | sha256sum -c - \
     && tar -C /rust -xzf $RUST_ARCHIVE --strip-components=1 \
     && rm $RUST_ARCHIVE \
-    && ./install.sh
+    && ./install.sh --without=rls,rust-docs
