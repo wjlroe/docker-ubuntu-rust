@@ -9,11 +9,12 @@ RUN apt-get update && \
        curl \
        gcc \
        libc6-dev \
+       python \
        -qqy \
        --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-ENV RUST_ARCHIVE=rust-1.15.1-x86_64-unknown-linux-gnu.tar.gz
+ENV RUST_ARCHIVE=rust-1.18.0-x86_64-unknown-linux-gnu.tar.gz
 ENV RUST_DOWNLOAD_URL=https://static.rust-lang.org/dist/$RUST_ARCHIVE
 
 RUN mkdir /rust
