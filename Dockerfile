@@ -25,3 +25,7 @@ RUN curl -fsOSL $RUST_DOWNLOAD_URL \
     && tar -C /rust -xzf $RUST_ARCHIVE --strip-components=1 \
     && rm $RUST_ARCHIVE \
     && ./install.sh --without=rls,rust-docs
+
+ENV PATH /root/.cargo/bin:$PATH
+
+RUN echo "$PATH"
