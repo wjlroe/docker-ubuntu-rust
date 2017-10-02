@@ -18,18 +18,19 @@ RUN apt-get update && \
        --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-ENV RUST_ARCHIVE=rust-1.19.0-x86_64-unknown-linux-gnu.tar.gz
-ENV RUST_DOWNLOAD_URL=https://static.rust-lang.org/dist/$RUST_ARCHIVE
+# This is only to force an update when changing this variable
+ENV RUST_VERSION=1.20.0
 
-RUN mkdir /rust
-WORKDIR /rust
-
-RUN curl -fsOSL $RUST_DOWNLOAD_URL \
-    && curl -s $RUST_DOWNLOAD_URL.sha256 | sha256sum -c - \
-    && tar -C /rust -xzf $RUST_ARCHIVE --strip-components=1 \
-    && rm $RUST_ARCHIVE \
-    && ./install.sh --without=rls,rust-docs
+RUN curl https://sh.rustup.rs -sSf | \
+    sh -s -- --default-toolchain stable -y
 
 ENV PATH /root/.cargo/bin:$PATH
 
+ENV RUST_NIGHTLY_VERSION=2017-10-02
+
+RUN rustup install nightly
+
+RUN rustup run nightly cargo install --force rustfmt-nightly
+
 RUN echo "$PATH"
+RUN rustc --version
