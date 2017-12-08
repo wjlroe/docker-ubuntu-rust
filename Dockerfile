@@ -14,6 +14,7 @@ RUN apt-get update && \
        ssh \
        tar \
        gzip \
+       build-essential \
        -qqy \
        --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
