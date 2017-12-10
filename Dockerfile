@@ -27,11 +27,13 @@ RUN curl https://sh.rustup.rs -sSf | \
 
 ENV PATH /root/.cargo/bin:$PATH
 
-ENV RUST_NIGHTLY_VERSION=2017-12-06
+ENV RUST_NIGHTLY_VERSION=2017-12-10
 
 RUN rustup install nightly
 
-RUN CFG_RELEASE_CHANNEL=nightly rustup run nightly cargo install --force rustfmt-nightly
+ENV CFG_RELEASE_CHANNEL=nightly
+RUN rustup run nightly cargo install --force rustfmt-nightly
+RUN rustup run nightly rustfmt --version
 
 RUN echo "$PATH"
 RUN rustc --version
