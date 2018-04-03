@@ -20,18 +20,18 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # This is only to force an update when changing this variable
-ENV RUST_VERSION=1.24.0
+ENV RUST_VERSION=1.25.0
 
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- --default-toolchain stable -y
 
 ENV PATH /root/.cargo/bin:$PATH
 
-ENV RUST_NIGHTLY_VERSION=2018-02-24
+ENV RUST_NIGHTLY_VERSION=2018-04-01
 
 RUN rustup install nightly
 
-ENV RUSTFMT_PREVIEW_VERSION=2018-02-04
+ENV RUSTFMT_PREVIEW_VERSION=2018-03-26
 
 RUN rustup component add rustfmt-preview --toolchain nightly
 RUN rustup run nightly rustfmt --version
