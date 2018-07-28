@@ -27,15 +27,10 @@ RUN curl https://sh.rustup.rs -sSf | \
 
 ENV PATH /root/.cargo/bin:$PATH
 
-ENV RUST_NIGHTLY_VERSION=2018-07-18
+ENV RUSTFMT_PREVIEW_VERSION="0.6.1-stable (49279d71 2018-05-08)"
 
-RUN rustup install nightly
-
-ENV RUSTFMT_PREVIEW_VERSION=2018-07-02
-
-RUN rustup component add rustfmt-preview --toolchain nightly
-RUN rustup run nightly rustfmt --version
+RUN rustup component add rustfmt-preview
+RUN cargo fmt --version
 
 RUN echo "$PATH"
 RUN rustc --version
-RUN rustup run nightly rustc --version
