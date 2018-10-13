@@ -20,14 +20,14 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # This is only to force an update when changing this variable
-ENV RUST_VERSION=1.27.2
+ENV RUST_VERSION=1.29.2
 
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- --default-toolchain stable -y
 
 ENV PATH /root/.cargo/bin:$PATH
 
-ENV RUSTFMT_PREVIEW_VERSION="0.6.1-stable (49279d71 2018-05-08)"
+ENV RUSTFMT_PREVIEW_VERSION="0.99.1-stable (da17b68 2018-08-04)"
 
 RUN rustup component add rustfmt-preview
 RUN cargo fmt --version
